@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ti Boul – Bòlèt</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#F27200;--black:#000000;--white:#FFFFFF;}
+        body{font-family:'Poppins',sans-serif;}
+        h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;}
+        .live-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite;}
+        @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+        .glass-card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);}
+        .btn-primary{background:var(--primary);color:var(--white);}
+        .btn-secondary{border:2px solid var(--primary);color:var(--primary);}
+        .vanta-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+        .content-overlay{position:relative;z-index:10;}
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div id="vanta-bg" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-transparent animate-pulse"></div>
+
+        <!-- Navigation -->
+        <nav class="absolute top-0 left-0 right-0 p-6 z-20">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-[#F27200] rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                        <span class="text-black font-black text-xl font-montserrat">TB</span>
+                    </div>
+                    <span class="text-white font-bold text-2xl font-montserrat tracking-wide">Ti Boul</span>
+                </div>
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="/bolèt" class="text-white/70 hover:text-white transition">Bòlèt</a>
+                    <a href="#rezilta" class="text-white/70 hover:text-white transition">Rezilta</a>
+                    <a href="#contact" class="text-white/70 hover:text-white transition">Kontak</a>
+                </div>
+                <button id="mobile-open" class="md:hidden text-white">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-overlay max-w-7xl mx-auto px-6 py-20 w-full">
+            <div class="grid lg:grid-cols-5 gap-8 items-center min-h-[80vh]">
+                <!-- Left Column -->
+                <div class="lg:col-span-3 space-y-10" data-aos="fade-right">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl md:text-7xl font-black leading-none">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Ti Boul</span>
+                            <br>
+                            <span class="text-white">Bòlèt</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-white/80 max-w-xl">
+                            Chwazi chif ou. Pran chans ou. Ranpòte gwo! Jwe kòfòtab, sekirite garanti.
+                        </p>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="/bolèt" aria-label="Jwe Bòlèt"
+                           class="btn-primary px-8 py-4 rounded-2xl font-bold text-lg text-center shadow-xl shadow-orange-500/40 hover:shadow-2xl hover:scale-105 transition-all">
+                            Jwe Bòlèt
+                        </a>
+                        <a href="#rezilta" aria-label="Gade tout rezilta"
+                           class="btn-secondary px-8 py-4 rounded-2xl font-bold text-lg text-center border-2 border-white/20 hover:bg-white/10 hover:border-white/40 transition-all">
+                            Gade tout rezilta
+                        </a>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <span class="glass-card px-5 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+                            <i data-feather="shield" class="w-4 h-4 text-orange-400"></i>Sekirize
+                        </span>
+                        <span class="glass-card px-5 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+                            <i data-feather="zap" class="w-4 h-4 text-orange-400"></i>Retrait rapid
+                        </span>
+                        <span class="glass-card px-5 py-3 rounded-full text-sm font-semibold flex items-center gap-2">
+                            <i data-feather="clock" class="w-4 h-4 text-orange-400"></i>24/7 Aksè
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Column – Live Tiraj Card -->
+                <div class="lg:col-span-2" data-aos="fade-left">
+                    <div class="glass-card rounded-3xl p-8 shadow-2xl shadow-orange-500/10 border border-white/10 hover:border-orange-400/40 transition-all duration-500">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-[#F27200] text-black px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                                    <span class="w-3 h-3 bg-black rounded-full live-pulse"></span>LIVE
+                                </span>
+                            </div>
+                            <div id="current-time" class="text-white/60 text-sm font-mono">00:00 PM</div>
+                        </div>
+
+                        <!-- Bòlèt Selector -->
+                        <div class="mb-4">
+                            <label class="text-white/70 text-sm mb-2 block">Chwazi Bòlèt:</label>
+                            <div class="relative">
+                                <select id="bolèt-select" class="glass-card w-full px-4 py-3 rounded-xl text-white bg-white/5 border border-white/10 focus:border-orange-400/60 focus:outline-none appearance-none cursor-pointer">
+                                    <option value="new-york">New York</option>
+                                    <option value="florida">Florida</option>
+                                    <option value="massachusetts">Massachusetts</option>
+                                    <option value="chicago">Chicago</option>
+                                    <option value="california">California</option>
+                                    <option value="georgia">Georgia</option>
+                                    <option value="maryland">Maryland</option>
+                                    <option value="pennsylvania">Pennsylvania</option>
+                                    <option value="new-jersey">New Jersey</option>
+                                    <option value="connecticut">Connecticut</option>
+                                </select>
+                                <i data-feather="chevron-down" class="w-5 h-5 text-white/60 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="space-y-5">
+                            <div class="flex justify-between items-center py-3 border-b border-white/10">
+                                <span class="text-white/70">Kòmanse:</span>
+                                <span id="start-time" class="font-bold text-2xl">08:30 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-white/10">
+                                <span class="text-white/70">Pwochen Tiraj:</span>
+                                <span id="next-draw" class="font-semibold">Demain 08:30 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-white/10">
+                                <span class="text-white/70">Sou Nimewo:</span>
+                                <span id="rolling-numbers" class="font-bold text-3xl tracking-wider">— — —</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3">
+                                <span class="text-white/70">Dènye Rezilta:</span>
+                                <span id="last-result" class="font-bold text-xl tracking-wider">12 • 34 • 56</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="pt-6 space-y-4">
+                            <a href="#rezilta" class="w-full px-6 py-3 rounded-xl font-bold text-center border-2 border-white/20 hover:bg-white/10 hover:border-orange-400/60 transition-all block">
+                                Gade Tout Rezilta
+                            </a>
+                            <p class="text-xs text-white/40 text-center">Done yo se demonstrasyon pou UI sèlman.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="apropos" class="py-32 relative overflow-hidden">
+        <div id="vanta-bg-about" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-transparent"></div>
+        <div class="relative z-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- Left: Big Heading & Intro -->
+                    <div class="lg:col-span-7" data-aos="fade-right">
+                        <!-- Subtitle Badge -->
+                        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card mb-6">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full live-pulse"></span>
+                            <span class="text-orange-300 text-sm font-semibold">Depi 2022 • Konfyans ak Transparans</span>
+                        </div>
+
+                        <h2 class="text-6xl md:text-8xl font-black mb-8 leading-none">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-200 to-orange-400">Nou se</span>
+                            <br>
+                            <span class="text-white">Ti Boul</span>
+                        </h2>
+
+                        <!-- Lead Text -->
+                        <p class="text-2xl text-white/90 leading-relaxed mb-10 max-w-3xl">
+                            Premye platfòm borlette an liy an Ayiti – kote chans ak sekirite rankontre. Depi 2022, nou mete plizyè milya Gdes nan pòch 50 000+ ganyan, epi nou kontinye fè wè.
+                        </p>
+
+                        <!-- Stats Row -->
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+                            <div class="glass-card rounded-2xl p-5 text-center group hover:border-orange-400/40 transition-all duration-300">
+                                <div class="text-4xl font-black text-orange-400 mb-1">120K+</div>
+                                <div class="text-white/70 text-sm">Jwè Aktif</div>
+                            </div>
+                            <div class="glass-card rounded-2xl p-5 text-center group hover:border-orange-400/40 transition-all duration-300">
+                                <div class="text-4xl font-black text-orange-400 mb-1">3 min</div>
+                                <div class="text-white/70 text-sm">Retrè Moyen</div>
+                            </div>
+                            <div class="glass-card rounded-2xl p-5 text-center group hover:border-orange-400/40 transition-all duration-300">
+                                <div class="text-4xl font-black text-orange-400 mb-1">10</div>
+                                <div class="text-white/70 text-sm">Tiraj/Jou</div>
+                            </div>
+                            <div class="glass-card rounded-2xl p-5 text-center group hover:border-orange-400/40 transition-all duration-300">
+                                <div class="text-4xl font-black text-orange-400 mb-1">24/7</div>
+                                <div class="text-white/70 text-sm">Sipò</div>
+                            </div>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div class="flex flex-wrap gap-4">
+                            <span class="glass-card px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                <i data-feather="award" class="w-4 h-4 text-orange-400"></i>Lisans BRH
+                            </span>
+                            <span class="glass-card px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                <i data-feather="shield" class="w-4 h-4 text-orange-400"></i>Blockchain Verifye
+                            </span>
+                            <span class="glass-card px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                                <i data-feather="zap" class="w-4 h-4 text-orange-400"></i>Peman Eklè
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Glass Card with Tabs -->
+                    <div class="lg:col-span-5" data-aos="fade-left">
+                        <div class="glass-card rounded-3xl p-8 shadow-2xl shadow-orange-500/10 border border-white/10">
+                            <!-- Tabs -->
+                            <div class="flex border-b border-white/10 mb-6">
+                                <button onclick="showTab('mission')" id="tab-mission" class="tab-btn flex-1 py-3 text-sm font-bold border-b-2 border-orange-400 text-orange-400">Misyon</button>
+                                <button onclick="showTab('vision')" id="tab-vision" class="tab-btn flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-white/60">Vizyon</button>
+                                <button onclick="showTab('valeur')" id="tab-valeur" class="tab-btn flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-white/60">Vale</button>
+                            </div>
+
+                            <!-- Tab Contents -->
+                            <div id="content-mission" class="tab-content">
+                                <h3 class="text-2xl font-bold mb-3 font-montserrat">Mete chans nan pòch tout moun</h3>
+                                <p class="text-white/80 leading-relaxed mb-4">
+                                    Nou bay yon platform ki senp, transparan epi sekirize pou tout Ayisyen ka pran chans yo, san pa gen pwoblèm.
+                                </p>
+                                <ul class="space-y-2 text-white/70 text-sm">
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Tiraj an dirèk sou YouTube</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Retrè otomatik 24/7</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Verifikasyon blockchain</li>
+                                </ul>
+                            </div>
+
+                            <div id="content-vision" class="tab-content hidden">
+                                <h3 class="text-2xl font-bold mb-3 font-montserrat">Tounen #1 nan Karayib la</h3>
+                                <p class="text-white/80 leading-relaxed mb-4">
+                                    Nan 5 an nou vle egziste nan tout peyi Karayib la epi ofri plizyè milyon dola an pri chak mwa.
+                                </p>
+                                <ul class="space-y-2 text-white/70 text-sm">
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Jackpot ki montre chak semèn</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>App entènasyonal</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Plizyè lajan (HTG, USD, EUR)</li>
+                                </ul>
+                            </div>
+
+                            <div id="content-valeur" class="tab-content hidden">
+                                <h3 class="text-2xl font-bold mb-3 font-montserrat">Integrite, Transparans, Responsabilite</h3>
+                                <p class="text-white/80 leading-relaxed mb-4">
+                                    Nou jwe selon règ yo epi nou ankouraje tout jwè yo fè menm bagay la. Chak gourde distribiye klè.
+                                </p>
+                                <ul class="space-y-2 text-white/70 text-sm">
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>10 % pwofi sou depans sosyal</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Limit jwe responsab</li>
+                                    <li class="flex items-start gap-3"><i data-feather="check-circle" class="w-4 h-4 text-orange-400 mt-0.5"></i>Rapò finansye chak mwa</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function showTab(tab) {
+                // Hide all contents
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+                // Reset all tabs
+                document.querySelectorAll('.tab-btn').forEach(t => {
+                    t.classList.remove('border-orange-400', 'text-orange-400');
+                    t.classList.add('border-transparent', 'text-white/60');
+                });
+                // Show selected
+                document.getElementById('content-' + tab).classList.remove('hidden');
+                document.getElementById('tab-' + tab).classList.add('border-orange-400', 'text-orange-400');
+                document.getElementById('tab-' + tab).classList.remove('border-transparent', 'text-white/60');
+            }
+        </script>
+    </section>
+
+    <!-- How it works section -->
+    <section id="koman-sa-mache" class="py-20 md:py-32 relative overflow-hidden">
+        <div id="vanta-bg-koman" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-transparent animate-pulse"></div>
+        <div class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Kòman</span> <span class="text-white">Sa Mache?</span>
+                </h2>
+                <p class="text-white/70 text-lg max-w-2xl mx-auto">
+                    Senp, rapid, epi sekirite. Swiv etap sa yo pou kòmanse jwe epi gen chans pou ou ranpòte gwo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Step 1 -->
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-card rounded-3xl p-8 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                            <i data-feather="user-plus" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-montserrat">Kreye Kont Ou</h3>
+                        <p class="text-white/70 leading-relaxed">
+                            Enskri rapid ak sèlman nimewo telefòn ou. Pa bezwen dokiman konplike.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div data-aos="fade-up" data-aos-delay="150">
+                    <div class="glass-card rounded-3xl p-8 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                            <i data-feather="edit-3" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-montserrat">Chwazi Chif Ou</h3>
+                        <p class="text-white/70 leading-relaxed">
+                            Selecionne 3 chif soti nan 0-99. Ou ka jwe plizyè kòb oswa plizyè fwa pa jou.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card rounded-3xl p-8 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30">
+                            <i data-feather="gift" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-montserrat">Ranpòte!</h3>
+                        <p class="text-white/70 leading-relaxed">
+                            Si chif ou soti, ou genyen! Retrè lajan ou rapid atravè MonCash oswa transfè labank.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="400">
+                <a href="/borlette" class="btn-primary px-10 py-4 rounded-2xl font-bold text-lg inline-flex items-center gap-3 shadow-xl shadow-orange-500/40 hover:shadow-2xl hover:scale-105 transition-all">
+                    <span>Kòmanse Jwe</span>
+                    <i data-feather="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Nos Points de Vente Section -->
+    <section id="points-vente" class="py-20 md:py-32 relative overflow-hidden">
+        <div id="vanta-bg-vente" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-transparent animate-pulse"></div>
+        <div class="relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Nos Points</span> <span class="text-white">de Vente</span>
+                </h2>
+                <p class="text-white/70 text-lg max-w-2xl mx-auto">
+                    Jwenn yon pwent vant toupre w. Plizyè mache ak komin gen pwent vant Ti Boul Bòlèt.
+                </p>
+            </div>
+
+            <!-- Map/Grid of Sales Points -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Point 1 -->
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Delmas 33</h3>
+                                <p class="text-white/60 text-sm">Rue Métellus #45</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>7:00 AM – 9:00 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-2345</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/delmas33" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Point 2 -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Pétion-Ville</h3>
+                                <p class="text-white/60 text-sm">Place Saint-Pierre</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>7:30 AM – 9:30 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-6789</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/petionville" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Point 3 -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Carrefour</h3>
+                                <p class="text-white/60 text-sm">Rond-Point métro</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>6:30 AM – 10:00 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-1122</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/carrefour" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Point 4 -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Tabarre</h3>
+                                <p class="text-white/60 text-sm">Route de l'Aéroport</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>7:00 AM – 8:30 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-3344</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/tabarre" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Point 5 -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Saint-Marc</h3>
+                                <p class="text-white/60 text-sm">Rue Commerce</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>8:00 AM – 8:00 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-5566</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/stmarc" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Point 6 -->
+                <div data-aos="fade-up" data-aos-delay="500">
+                    <div class="glass-card rounded-3xl p-6 h-full group hover:border-orange-400/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                                <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-montserrat">Cap-Haïtien</h3>
+                                <p class="text-white/60 text-sm">Boulevard Carenage</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-white/70">
+                            <p class="flex items-center gap-2"><i data-feather="clock" class="w-4 h-4 text-orange-400"></i>7:30 AM – 9:00 PM</p>
+                            <p class="flex items-center gap-2"><i data-feather="phone" class="w-4 h-4 text-orange-400"></i>+509 3791-7788</p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/caphaitien" target="_blank" class="mt-4 btn-secondary w-full px-4 py-2 rounded-xl text-sm inline-flex items-center justify-center gap-2">
+                            <i data-feather="navigation" class="w-4 h-4"></i>Waze/Lokasyon
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="600">
+                <p class="text-white/70 mb-6">Ou pa jwenn yon pwant toupre w?</p>
+                <a href="#contact" class="btn-primary px-8 py-3 rounded-2xl font-bold text-lg inline-flex items-center gap-3 shadow-xl shadow-orange-500/40 hover:shadow-2xl hover:scale-105 transition-all">
+                    <span>Rele Sipò Nou</span>
+                    <i data-feather="phone-call" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 md:py-32 relative overflow-hidden">
+        <div id="vanta-bg-faq" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 via-transparent to-transparent animate-pulse"></div>
+        <div class="relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-orange-400">Kesyon</span> <span class="text-white">Komen</span>
+                </h2>
+                <p class="text-white/70 text-lg">Tout sa ou bezwen konnen sou Ti Boul Borlette</p>
+            </div>
+
+            <div class="space-y-6" data-aos="fade-up" data-aos-delay="150">
+                <!-- FAQ Item 1 -->
+                <details class="glass-card rounded-2xl p-6 group open:bg-white/5 transition">
+                    <summary class="flex justify-between items-center cursor-pointer list-none">
+                        <h3 class="text-lg font-bold font-montserrat">Èske mwen ka jwe depi nenpòt kote?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-orange-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-white/70 leading-relaxed">
+                        Wi! Ou ka jwe Ti Boul Bòlèt depi nenpòt kote ann Ayiti oswa aletranje selman ak yon telefòn entènèt. Plizyè moun jwe pandan vwayaj yo.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="glass-card rounded-2xl p-6 group open:bg-white/5 transition">
+                    <summary class="flex justify-between items-center cursor-pointer list-none">
+                        <h3 class="text-lg font-bold font-montserrat">Konbyen tan pran pou mwen resevwa lajan mwen?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-orange-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-white/70 leading-relaxed">
+                        Retrè MonCash se rive nan mwens pase 5 minit. Transfè labank ka pran 1-2 lè oswa jiska lendemain selon bank lan.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="glass-card rounded-2xl p-6 group open:bg-white/5 transition">
+                    <summary class="flex justify-between items-center cursor-pointer list-none">
+                        <h3 class="text-lg font-bold font-montserrat">Èske gen limit sou kantite lajan mwen ka jwe?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-orange-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-white/70 leading-relaxed">
+                        Mwenmiman se 10 Gdes pa tikè, maksimòm 50,000 Gdes pa jou. Nou ankouraje jwe responsab ak limit pèsonèl.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="glass-card rounded-2xl p-6 group open:bg-white/5 transition">
+                    <summary class="flex justify-between items-center cursor-pointer list-none">
+                        <h3 class="text-lg font-bold font-montserrat">Kijan mwen konnen si mwen genyen?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-orange-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-white/70 leading-relaxed">
+                        Rezilta yo pibliye chak swa 8:30 PM sou aplikasyon an, sou sit wèb la, ak pa SMS sou telefòn ou. Ou ka tou verifye nan seksyon "Rezilta".
+                    </p>
+                </details>
+
+                <!-- FAQ Item 5 -->
+                <details class="glass-card rounded-2xl p-6 group open:bg-white/5 transition">
+                    <summary class="flex justify-between items-center cursor-pointer list-none">
+                        <h3 class="text-lg font-bold font-montserrat">Kilès ki gen chans pi gwo pou genyen?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-orange-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-white/70 leading-relaxed">
+                        Chak chif gen menm chans. Pa gen "chif cho" oswa "chif frèt". Se chans ki deside. Jwe responsab epi pa depase bajè ou.
+                    </p>
+                </details>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="300">
+                <p class="text-white/70 mb-6">Ou pa jwenn repons ou chèche?</p>
+                <a href="#contact" class="btn-primary px-8 py-3 rounded-2xl font-bold text-lg inline-flex items-center gap-3 shadow-xl shadow-orange-500/40 hover:shadow-2xl hover:scale-105 transition-all">
+                    <span>Kontak Nou</span>
+                    <i data-feather="message-circle" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script>
+        // Initialize Vanta.js background for all sections
+        const vantaConfig = {
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xf27200,
+            color2: 0x0,
+            size: 1.00,
+            backgroundColor: 0x0
+        };
+
+        VANTA.GLOBE(Object.assign({el: "#vanta-bg"}, vantaConfig));
+        VANTA.GLOBE(Object.assign({el: "#vanta-bg-koman"}, vantaConfig));
+        VANTA.GLOBE(Object.assign({el: "#vanta-bg-vente"}, vantaConfig));
+        VANTA.GLOBE(Object.assign({el: "#vanta-bg-faq"}, vantaConfig));
+
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            duration: 800
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            document.getElementById('current-time').textContent = `${displayHours}:${minutes} ${ampm}`;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Borlette data
+        const borletteData = {
+            'new-york': { start: '08:30 PM', next: 'Demain 08:30 PM', last: '12 • 34 • 56' },
+            'florida': { start: '09:00 PM', next: 'Demain 09:00 PM', last: '08 • 45 • 67' },
+            'massachusetts': { start: '07:45 PM', next: 'Demain 07:45 PM', last: '23 • 01 • 89' },
+            'chicago': { start: '08:15 PM', next: 'Demain 08:15 PM', last: '56 • 78 • 23' },
+            'california': { start: '10:00 PM', next: 'Demain 10:00 PM', last: '34 • 67 • 90' },
+            'georgia': { start: '08:45 PM', next: 'Demain 08:45 PM', last: '11 • 22 • 33' },
+            'maryland': { start: '07:30 PM', next: 'Demain 07:30 PM', last: '45 • 67 • 89' },
+            'pennsylvania': { start: '09:15 PM', next: 'Demain 09:15 PM', last: '78 • 23 • 45' },
+            'new-jersey': { start: '08:00 PM', next: 'Demain 08:00 PM', last: '90 • 12 • 34' },
+            'connecticut': { start: '07:15 PM', next: 'Demain 07:15 PM', last: '67 • 89 • 01' }
+        };
+
+        // Update borlette info
+        function updateBorletteInfo() {
+            const select = document.getElementById('borlette-select');
+            const selected = select.value;
+            const data = borletteData[selected];
+            
+            document.getElementById('start-time').textContent = data.start;
+            document.getElementById('next-draw').textContent = data.next;
+            document.getElementById('last-result').textContent = data.last;
+        }
+
+        // Rolling numbers animation
+        function rollNumbers() {
+            const numbers = [];
+            for (let i = 0; i < 3; i++) {
+                numbers.push(Math.floor(Math.random() * 99).toString().padStart(2, '0'));
+            }
+            document.getElementById('rolling-numbers').textContent = numbers.join(' • ');
+        }
+        
+        // Start rolling numbers
+        rollNumbers();
+        setInterval(rollNumbers, 1000);
+
+        // Borlette selector event
+        document.getElementById('bòlèt-select').addEventListener('change', updateBorletteInfo);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer id="contact" class="relative overflow-hidden py-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/80 to-black"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            
+            <!-- Top Row: Logo & Newsletter -->
+            <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <!-- Brand -->
+                <div data-aos="fade-right">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-14 h-14 bg-[#F27200] rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                            <span class="text-black font-black text-2xl font-montserrat">TB</span>
+                        </div>
+                        <span class="text-white font-bold text-3xl font-montserrat tracking-wide">Ti Boul</span>
+                    </div>
+                    <p class="text-white/70 leading-relaxed max-w-md">
+                        Chwazi chif ou. Pran chans ou. Ranpòte gwo! Jwe kòfòtab, sekirite garanti.
+                    </p>
+                </div>
+
+                <!-- Newsletter -->
+                <div data-aos="fade-left">
+                    <h3 class="text-white font-bold text-xl mb-3 font-montserrat">Rester informé</h3>
+                    <p class="text-white/70 mb-4">Abonnez-vous pour recevoir les dernières promotions et résultats.</p>
+                    <form class="flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); alert('Merci pour votre abonnement !');">
+                        <input type="email" placeholder="Votre e-mail" required
+                               class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-orange-400/60">
+                        <button type="submit" class="btn-primary px-6 py-3 rounded-xl font-bold">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Middle Row: Quick Links -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <!-- Borlette -->
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <h4 class="text-white font-bold text-lg mb-4 font-montserrat">Bòlèt</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/borlette" class="text-white/70 hover:text-white transition">Jouer en ligne</a></li>
+                        <li><a href="#rezilta" class="text-white/70 hover:text-white transition">Résultats</a></li>
+                        <li><a href="#points-vente" class="text-white/70 hover:text-white transition">Points de vente</a></li>
+                        <li><a href="/borlette#horaires" class="text-white/70 hover:text-white transition">Horaires</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-white font-bold text-lg mb-4 font-montserrat">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="tel:+50937912345" class="text-white/70 hover:text-white transition">+509 3791-2345</a></li>
+                        <li><a href="https://wa.me/50937912345" target="_blank" class="text-white/70 hover:text-white transition">WhatsApp</a></li>
+                        <li><a href="mailto:support@tiboul.ht" class="text-white/70 hover:text-white transition">support@tiboul.ht</a></li>
+                        <li><span class="text-white/70">24/7</span></li>
+                    </ul>
+                </div>
+
+                <!-- Légal -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-white font-bold text-lg mb-4 font-montserrat">Légal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/terms" class="text-white/70 hover:text-white transition">T&Cs</a></li>
+                        <li><a href="/privacy" class="text-white/70 hover:text-white transition">Confidentialité</a></li>
+                        <li><a href="/responsible" class="text-white/70 hover:text-white transition">Jeu responsable</a></li>
+                        <li><a href="/aml" class="text-white/70 hover:text-white transition">AML/KYC</a></li>
+                    </ul>
+                </div>
+
+                <!-- À propos -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="text-white font-bold text-lg mb-4 font-montserrat">À propos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/about" class="text-white/70 hover:text-white transition">Notre histoire</a></li>
+                        <li><a href="/careers" class="text-white/70 hover:text-white transition">Carrières</a></li>
+                        <li><a href="/press" class="text-white/70 hover:text-white transition">Presse</a></li>
+                        <li><a href="/partners" class="text-white/70 hover:text-white transition">Devenez partenaire</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Social & Copyright -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/60 text-sm">
+                    © 2024 Ti Boul Borlette. Tout dwa rezève. 
+                    Développé par <a href="https://solvexa.io" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 transition">Solvexalabs LLC</a>.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="https://facebook.com/tiboul" target="_blank" aria-label="Facebook" class="text-white/60 hover:text-white transition"><i data-feather="facebook" class="w-5 h-5"></i></a>
+                    <a href="https://twitter.com/tiboul" target="_blank" aria-label="Twitter" class="text-white/60 hover:text-white transition"><i data-feather="twitter" class="w-5 h-5"></i></a>
+                    <a href="https://instagram.com/tiboul" target="_blank" aria-label="Instagram" class="text-white/60 hover:text-white transition"><i data-feather="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://t.me/tiboul" target="_blank" aria-label="Telegram" class="text-white/60 hover:text-white transition"><i data-feather="send" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation Bar (Mobile Only) -->
+    <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-lg border-t border-white/10 px-4 py-2 z-30 md:hidden">
+        <div class="flex items-center justify-around">
+            <!-- Home -->
+            <a href="/" class="flex flex-col items-center gap-1 p-2 text-white/80 hover:text-white transition">
+                <i data-feather="home" class="w-5 h-5"></i>
+                <span class="text-xs font-semibold">Akey</span>
+            </a>
+
+            <!-- Borlette -->
+            <a href="/borlette" class="flex flex-col items-center gap-1 p-2 text-white/80 hover:text-white transition">
+                <i data-feather="dollar-sign" class="w-5 h-5"></i>
+                <span class="text-xs font-semibold">Borlette</span>
+            </a>
+
+            <!-- Results -->
+            <a href="#rezilta" class="flex flex-col items-center gap-1 p-2 text-white/80 hover:text-white transition">
+                <i data-feather="bar-chart-2" class="w-5 h-5"></i>
+                <span class="text-xs font-semibold">Rezilta</span>
+            </a>
+
+            <!-- Sales Points -->
+            <a href="#points-vente" class="flex flex-col items-center gap-1 p-2 text-white/80 hover:text-white transition">
+                <i data-feather="map-pin" class="w-5 h-5"></i>
+                <span class="text-xs font-semibold">Pwent</span>
+            </a>
+
+            <!-- Contact -->
+            <a href="#contact" class="flex flex-col items-center gap-1 p-2 text-white/80 hover:text-white transition">
+                <i data-feather="message-circle" class="w-5 h-5"></i>
+                <span class="text-xs font-semibold">Kontak</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Feather Icons -->
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
